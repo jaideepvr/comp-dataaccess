@@ -1,19 +1,15 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System.Data.SQLite;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gvs.DataAccess.XTests.DataFixtures
 {
-    public sealed class MysqlDataFixture: IDisposable
+    public sealed class SqliteDataFixture: IDisposable
     {
 
-        private string _connectionString = @"Server=localhost;Database=abc;Uid=****;Pwd=*****";
+        private string _connectionString = @"URI=file:E:\Projects\GVS\Common\SQLiteDB\test.db";
 
-        public MysqlDataFixture()
+        public SqliteDataFixture()
         {
             string setupSql = File.ReadAllText(@"DataFixtures\Setup.sql");
             executeSql(_connectionString, setupSql);
@@ -29,9 +25,9 @@ namespace Gvs.DataAccess.XTests.DataFixtures
 
         private void executeSql(string connectionString, string sql)
         {
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            SQLiteConnection connection = new SQLiteConnection(connectionString);
             connection.Open();
-            MySqlCommand command = new MySqlCommand(sql);
+            SQLiteCommand command = new SQLiteCommand(sql);
             command.Connection = connection;
             command.ExecuteNonQuery();
         }

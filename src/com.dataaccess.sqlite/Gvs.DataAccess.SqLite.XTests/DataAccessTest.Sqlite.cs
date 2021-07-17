@@ -2,12 +2,12 @@
 using Gvs.DataAccess.XTests.DataFixtures;
 using Xunit;
 
-namespace Gvs.DataAccess.Mysql.XTests
+namespace Gvs.DataAccess.Sqlite.XTests
 {
-    public class MysqlDataAccessTest: DataAccessTestBase, IClassFixture<MysqlDataFixture>
+    public class SqliteDataAccessTest: DataAccessTestBase, IClassFixture<SqliteDataFixture>
     {
 
-        protected override string ConnectionString => "provider=Gvs.DataAccess.Mysql; provider connection string='Server=****;Database=abc;Uid=***;Pwd=*****';";
+        protected override string ConnectionString => @"provider=Gvs.DataAccess.Sqlite; provider connection string='URI=file:E:\Projects\GVS\Common\SQLiteDB\test.db';";
 
         protected override string AllUsersSql => "SELECT user_id, user_name, password, first_name, last_name, date_of_birth FROM user";
 

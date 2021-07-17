@@ -36,6 +36,7 @@ namespace Gvs.DataAccess.Core
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 connection = null;
             }
 

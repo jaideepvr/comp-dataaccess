@@ -1,7 +1,8 @@
 {
   "frameworks": {
     "netcoreapp3.1": {
-      "buildOptions": {        "define":  [ "NETCOREAPP" ]
+      "buildOptions": {
+        "define":  [ "NETCOREAPP" ]
       }
     }
   }

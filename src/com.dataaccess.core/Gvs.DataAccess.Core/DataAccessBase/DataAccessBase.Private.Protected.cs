@@ -121,6 +121,13 @@ namespace Gvs.DataAccess.Core {
             return CreateDataAdapter(command);
         }
 
+        protected virtual IDbCommand CreateStoredProcDataCommand(string storedProcName, IList<QueryParameter> parameters)
+        {
+            IDbCommand command = GetCommand(CommandType.StoredProcedure, storedProcName);
+            LoadCommandParameters(command, parameters);
+            return command;
+        }
+
         protected virtual IQueryBuilder<T> GetQueryBuilder<T>() where T : class, new() {
             IQueryBuilder<T> queryBuilder = DataAccess.createQueryBuilder<T>(this);
             if (null == queryBuilder) {
@@ -252,9 +259,7 @@ namespace Gvs.DataAccess.Core {
         /// <param name="storedProcName">name of the proc</param>
         /// <param name="parameters">List of parameters</param>
         protected void ExecuteProcNonQuery(string storedProcName, IList<QueryParameter> parameters) {
-            IDbCommand command = GetCommand(CommandType.StoredProcedure, storedProcName);
-
-            LoadCommandParameters(command, parameters);
+            IDbCommand command = CreateStoredProcDataCommand(storedProcName, parameters);
 
             try {
                 HandleOpeningConnection();
@@ -307,9 +312,7 @@ namespace Gvs.DataAccess.Core {
         /// <param name="parameters">list of parameters</param>
         /// <returns>data reader</returns>
         protected IDataReader ExecuteProcDataReader(string storedProcName, IList<QueryParameter> parameters) {
-            IDbCommand command = GetCommand(CommandType.StoredProcedure, storedProcName);
-
-            LoadCommandParameters(command, parameters);
+            IDbCommand command = CreateStoredProcDataCommand(storedProcName, parameters);
             IDataReader reader = null;
 
             HandleOpeningConnection();
