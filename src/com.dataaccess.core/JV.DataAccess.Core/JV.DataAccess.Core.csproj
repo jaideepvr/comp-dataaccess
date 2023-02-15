@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0</TargetFrameworks>
+    <PackageId>JV.DataAccess.Core</PackageId>
+    <Company>Jaideep's Personal Project</Company>
+    <Authors>Jaideep Vinakota</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>1.0.0</Version>
+    <Description>Core Data Access Library that can be extended to support Data Access libraries for various databases. Supports a generic class to instantiate the DB specific DataAccess classes.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceFiles\ExceptionMessages.resx">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
